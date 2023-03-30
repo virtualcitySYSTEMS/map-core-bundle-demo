@@ -1,12 +1,71 @@
 /**
- * @param {import("@vcmap/core").VcsApp} vcsApp
+ * @param {import("@vcmap/core").VcsApp} app
+ * @returns {{stopped: VcsEvent<any>, stop: (function(): void)}}
+ */
+function createFeatureInfoSession(app) {
+    /**
+     * @class
+     * @extends {import("@vcmap/core").AbstractInteraction}
+     */
+    class CustomFeatureInfoInteraction extends window.vcs.AbstractInteraction {
+        /**
+         * @param {string} layerName
+         */
+        constructor(layerName) {
+            super(window.vcs.EventType.CLICK, window.vcs.ModificationKeyType.NONE);
+            this.layerName = layerName;
+            super.setActive();
+        }
+        /**
+         * @param {import("@vcmap/core").InteractionEvent} event
+         * @returns {Promise<import("@vcmap/core").InteractionEvent>}
+         */
+        async pipe(event) {
+            if (event.feature) {
+                // restrict alert to specific layer
+                if (event.feature[window.vcs.vcsLayerName] === this.layerName) {
+                    alert(`The ID of the selected feature is: ${event.feature.getId()}`);
+                }
+            }
+            return event;
+        }
+    }
+
+    const { eventHandler } = app.maps;
+    /** @type {function():void} */
+    let stop;
+    const interaction = new CustomFeatureInfoInteraction('_demoDrawingLayer');
+    const listener = eventHandler.addExclusiveInteraction(
+        interaction,
+        () => { stop?.(); },
+    );
+    const currentFeatureInteractionEvent = eventHandler.featureInteraction.active;
+    eventHandler.featureInteraction.setActive(window.vcs.EventType.CLICK);
+
+    const stopped = new window.vcs.VcsEvent();
+    stop = () => {
+        listener();
+        interaction.destroy();
+        eventHandler.featureInteraction.setActive(currentFeatureInteractionEvent);
+        stopped.raiseEvent();
+        stopped.destroy();
+    };
+
+    return {
+        stopped,
+        stop,
+    };
+}
+
+/**
+ * @param {import("@vcmap/core").VcsApp} app
  * @param {string} url
  * @returns {Promise<void>}
  */
-async function loadContext(vcsApp, url) {
+async function loadContext(app, url) {
     const config = await fetch(url).then(response => response.json());
     const context = new window.vcs.Context(config);
-    await vcsApp.addContext(context);
+    await app.addContext(context);
 }
 
 /**
@@ -19,6 +78,8 @@ async function init() {
         const vcsApp = new window.vcs.VcsApp();
         vcsApp.maps.setTarget('myMapUUID');
         loadContext(vcsApp, 'https://new.virtualcitymap.de/map.config.json');
+        // create new feature info session to allow feature click interaction
+        createFeatureInfoSession(vcsApp);
         // set cesium base url
         window.CESIUM_BASE_URL = '../dist/assets/cesium/';
         // adding helper instance to window
@@ -110,7 +171,11 @@ function drawFeature(app, geometryType) {
         }
     });
     // to draw only a single feature, stop the session, after creationFinished was fired
-    const finishedDestroy = session.creationFinished.addEventListener(() => session.stop());
+    const finishedDestroy = session.creationFinished.addEventListener(() => {
+        session.stop();
+        // reactivate feature info by creating new feature info session
+        createFeatureInfoSession(app);
+    });
     const destroy = () => {
         featureCreatedDestroy();
         finishedDestroy();
