@@ -54,33 +54,47 @@ async function setActiveMap(maps, mapName) {
     await maps.setActiveMap(mapName);
 }
 
+/**
+ * @param {import("@vcmap/ui").VcsUiApp} app
+ * @returns {import("@vcmap/core").VectorLayer}
+ */
+function createSimpleEditorLayer(app) {
+    const layer = new vcs.VectorLayer({
+        name: '_demoDrawingLayer',
+        projection: vcs.mercatorProjection.toJSON(),
+        zIndex: vcs.maxZIndex - 1,
+    });
+    // layer style
+    const style = new vcs.VectorStyleItem({
+        fill: {
+            color: '#ff0000',
+        },
+        stroke: {
+            color: '#ffffff',
+            width: 1,
+        },
+        image: {
+            color: '#00ff00',
+            src: '../dist/assets/cesium/Assets/Textures/pin.svg',
+        },
+    });
+    layer.setStyle(style);
+    // layer will not be serialized
+    vcs.markVolatile(layer);
+    // activate and add layer
+    layer.activate();
+    app.layers.add(layer);
+
+    return layer;
+}
+
+/**
+ * @param {import("@vcmap/core").VcsApp} app
+ * @property {import("@vcmap/core").GeometryType} geometryType
+ * @returns {function():void}
+ */
 function drawFeature(app, geometryType) {
-    let layer = app.layers.getByKey('_demoDrawingLayer');
-    if (!layer) {
-        layer = new vcs.VectorLayer({
-            name: '_demoDrawingLayer',
-            vectorProperties: {
-                altitudeMode: 'clampToGround',
-            }
-        });
-        // layer style
-        const style = new vcs.VectorStyleItem({
-            fill: {
-                color: '#ff0000',
-            },
-            stroke: {
-                color: '#ffffff',
-                width: 1,
-            },
-            image: {
-                color: '#00ff00',
-                src: '../dist/assets/cesium/Assets/Textures/pin.svg',
-                scale: 10,
-            },
-        });
-        layer.setStyle(style);
-        app.layers.add(layer);
-    }
+    let layer = app.layers.getByKey('_demoDrawingLayer') || createSimpleEditorLayer(app);
     layer.activate();
     const session = vcs.startCreateFeatureSession(app, layer, geometryType);
     // adapt the features style
@@ -89,7 +103,8 @@ function drawFeature(app, geometryType) {
             const pinStyle = new vcs.VectorStyleItem({});
             pinStyle.image = new ol.style.Icon({
                 color: '#0000ff',
-                src: './dist/assets/cesium/Assets/Textures/pin.svg',
+                src: '../dist/assets/cesium/Assets/Textures/pin.svg',
+                scale: 2,
             });
             feature.setStyle(pinStyle.style);
         }
