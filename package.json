@@ -12,10 +12,9 @@
   "license": "ISC",
   "files": [
     "build/",
+    "demo/",
     "dist/",
-    "demo/index.html",
-    "index.js",
-    "demo/vcsHelper.js"
+    "index.js"
   ],
   "dependencies": {
     "@vcmap/core": "^5.0.0-rc.27"
