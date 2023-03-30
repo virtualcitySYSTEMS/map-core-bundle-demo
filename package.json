@@ -1,0 +1,26 @@
+{
+  "name": "core-bundle-demo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "demo project bundling map-core and integrating it in a demo application",
+  "main": "index.js",
+  "scripts": {
+    "postbuild": "node build/buildCesium.js",
+    "build": "vite build"
+  },
+  "author": "vcs",
+  "license": "ISC",
+  "files": [
+    "build/",
+    "dist/",
+    "demo/index.html",
+    "index.js",
+    "demo/vcsHelper.js"
+  ],
+  "dependencies": {
+    "@vcmap/core": "^5.0.0-rc.27"
+  },
+  "devDependencies": {
+    "vite": "^4.2.1"
+  }
+}
