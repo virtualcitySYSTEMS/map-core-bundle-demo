@@ -8,8 +8,8 @@
     "postbuild": "node build/buildCesium.js",
     "build": "vite build"
   },
-  "author": "vcs",
-  "license": "ISC",
+  "author": "Virtual City Systems",
+  "license": "MIT",
   "files": [
     "build/",
     "demo/",
