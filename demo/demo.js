@@ -62,10 +62,10 @@ function createFeatureInfoSession(app) {
  * @param {string} url
  * @returns {Promise<void>}
  */
-async function loadContext(app, url) {
+async function loadModule(app, url) {
     const config = await fetch(url).then(response => response.json());
-    const context = new window.vcs.Context(config);
-    await app.addContext(context);
+    const module = new window.vcs.VcsModule(config);
+    await app.addModule(module);
 }
 
 /**
@@ -77,7 +77,7 @@ async function init() {
         // init App and load a config file
         const vcsApp = new window.vcs.VcsApp();
         vcsApp.maps.setTarget('myMapUUID');
-        loadContext(vcsApp, 'https://new.virtualcitymap.de/map.config.json');
+        loadModule(vcsApp, 'https://new.virtualcitymap.de/map.config.json');
         // create new feature info session to allow feature click interaction
         createFeatureInfoSession(vcsApp);
         // set cesium base url
@@ -108,7 +108,7 @@ async function zoom(map, out = false, zoomFactor = 2) {
 
 /**
  * @param {MapCollection} maps
- * @param {string} mapName - name as defined in the context
+ * @param {string} mapName - name as defined in the module
  * @returns {Promise<void>}
  */
 async function setActiveMap(maps, mapName) {
@@ -122,7 +122,7 @@ async function setActiveMap(maps, mapName) {
 function createSimpleEditorLayer(app) {
     const layer = new vcs.VectorLayer({
         name: '_demoDrawingLayer',
-        projection: vcs.mercatorProjection.toJSON(),
+        projection: vcs.wgs84Projection.toJSON(),
         zIndex: vcs.maxZIndex - 1,
     });
     // layer style

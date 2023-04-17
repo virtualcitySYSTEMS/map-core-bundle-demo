@@ -5,6 +5,7 @@
   "description": "demo project bundling map-core and integrating it in a demo application",
   "main": "index.js",
   "scripts": {
+    "start": "vite",
     "postbuild": "node build/buildCesium.js",
     "build": "vite build"
   },
@@ -17,7 +18,7 @@
     "index.js"
   ],
   "dependencies": {
-    "@vcmap/core": "^5.0.0-rc.27"
+    "@vcmap/core": "^5.0.0-rc.29"
   },
   "devDependencies": {
     "vite": "^4.2.1"
