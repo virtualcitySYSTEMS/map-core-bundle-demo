@@ -18,7 +18,7 @@
     "index.js"
   ],
   "dependencies": {
-    "@vcmap/core": "^5.0.0-rc.29"
+    "@vcmap/core": "^5.0.0-rc.30"
   },
   "devDependencies": {
     "vite": "^4.2.1"
