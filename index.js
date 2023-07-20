@@ -17,7 +17,7 @@ import Stroke from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import Text from 'ol/style/Text';
 
-window.vcs = vcs;
+window.vcs = Object.assign(window.vcs, vcs);
 window.ol = {
     geom: {
         Circle,

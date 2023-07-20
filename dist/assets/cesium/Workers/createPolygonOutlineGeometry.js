@@ -1,4 +1,4 @@
-define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', './Transforms-40229881', './Check-666ab1a0', './ComponentDatatype-f7b11d02', './EllipsoidTangentPlane-214683dc', './GeometryAttribute-7d6f1732', './GeometryAttributes-f06a2792', './GeometryInstance-451dc1cd', './GeometryOffsetAttribute-04332ce7', './GeometryPipeline-ce4339ed', './IndexDatatype-a55ceaa1', './Math-2dbd6b93', './PolygonGeometryLibrary-a8680d96', './PolygonPipeline-844aab0a', './Matrix2-13178034', './RuntimeError-06c93819', './combine-ca22a614', './WebGLConstants-a8cc3e8c', './AxisAlignedBoundingBox-ff186ccc', './IntersectionTests-f6e6bd8a', './Plane-900aa728', './AttributeCompression-b646d393', './EncodedCartesian3-81f70735', './arrayRemoveDuplicates-c2038105', './EllipsoidRhumbLine-19756602'], (function (defaultValue, Matrix3, ArcType, Transforms, Check, ComponentDatatype, EllipsoidTangentPlane, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryOffsetAttribute, GeometryPipeline, IndexDatatype, Math$1, PolygonGeometryLibrary, PolygonPipeline, Matrix2, RuntimeError, combine, WebGLConstants, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, arrayRemoveDuplicates, EllipsoidRhumbLine) { 'use strict';
+define(['./defaultValue-fe22d8c0', './Matrix3-41c58dde', './ArcType-2d9abbbc', './Transforms-a2a85221', './Check-6ede7e26', './ComponentDatatype-cf1fa08e', './EllipsoidTangentPlane-6dd1b7af', './GeometryAttribute-ff5b4fb1', './GeometryAttributes-ad136444', './GeometryInstance-34d9e21e', './GeometryOffsetAttribute-9ad0019c', './GeometryPipeline-1f8fbf05', './IndexDatatype-2643aa47', './Math-0a2ac845', './PolygonGeometryLibrary-076a5d25', './PolygonPipeline-b9f2810a', './Matrix2-e1298525', './RuntimeError-ef395448', './combine-d9581036', './WebGLConstants-0b1ce7ba', './AxisAlignedBoundingBox-4140c51f', './IntersectionTests-70d39ba9', './Plane-4c3d403b', './AttributeCompression-f9f6c717', './EncodedCartesian3-57415c8a', './arrayRemoveDuplicates-d2061e85', './EllipsoidRhumbLine-ef872433'], (function (defaultValue, Matrix3, ArcType, Transforms, Check, ComponentDatatype, EllipsoidTangentPlane, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryOffsetAttribute, GeometryPipeline, IndexDatatype, Math$1, PolygonGeometryLibrary, PolygonPipeline, Matrix2, RuntimeError, combine, WebGLConstants, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, arrayRemoveDuplicates, EllipsoidRhumbLine) { 'use strict';
 
   const createGeometryFromPositionsPositions = [];
   const createGeometryFromPositionsSubdivided = [];
@@ -248,14 +248,14 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', '
    * @alias PolygonOutlineGeometry
    * @constructor
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {PolygonHierarchy} options.polygonHierarchy A polygon hierarchy that can include holes.
-   * @param {Number} [options.height=0.0] The distance in meters between the polygon and the ellipsoid surface.
-   * @param {Number} [options.extrudedHeight] The distance in meters between the polygon's extruded face and the ellipsoid surface.
+   * @param {number} [options.height=0.0] The distance in meters between the polygon and the ellipsoid surface.
+   * @param {number} [options.extrudedHeight] The distance in meters between the polygon's extruded face and the ellipsoid surface.
    * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid to be used as a reference.
-   * @param {Number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
-   * @param {Boolean} [options.perPositionHeight=false] Use the height of options.positions for each position instead of using options.height to determine the height.
+   * @param {number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
+   * @param {boolean} [options.perPositionHeight=false] Use the height of options.positions for each position instead of using options.height to determine the height.
    * @param {ArcType} [options.arcType=ArcType.GEODESIC] The type of path the outline must follow. Valid options are {@link ArcType.GEODESIC} and {@link ArcType.RHUMB}.
    *
    * @see PolygonOutlineGeometry#createGeometry
@@ -382,7 +382,7 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', '
 
     /**
      * The number of elements used to pack the object into an array.
-     * @type {Number}
+     * @type {number}
      */
     this.packedLength =
       PolygonGeometryLibrary.PolygonGeometryLibrary.computeHierarchyPackedLength(
@@ -397,10 +397,10 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', '
    * Stores the provided instance into the provided array.
    *
    * @param {PolygonOutlineGeometry} value The value to pack.
-   * @param {Number[]} array The array to pack into.
-   * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
+   * @param {number[]} array The array to pack into.
+   * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
    *
-   * @returns {Number[]} The array that was packed into
+   * @returns {number[]} The array that was packed into
    */
   PolygonOutlineGeometry.pack = function (value, array, startingIndex) {
     //>>includeStart('debug', pragmas.debug);
@@ -440,8 +440,8 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', '
   /**
    * Retrieves an instance from a packed array.
    *
-   * @param {Number[]} array The packed array.
-   * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
+   * @param {number[]} array The packed array.
+   * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
    * @param {PolygonOutlineGeometry} [result] The object into which to store the result.
    * @returns {PolygonOutlineGeometry} The modified result parameter or a new PolygonOutlineGeometry instance if one was not provided.
    */
@@ -494,13 +494,13 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './ArcType-ce2e50ab', '
   /**
    * A description of a polygon outline from an array of positions.
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Cartesian3[]} options.positions An array of positions that defined the corner points of the polygon.
-   * @param {Number} [options.height=0.0] The height of the polygon.
-   * @param {Number} [options.extrudedHeight] The height of the polygon extrusion.
+   * @param {number} [options.height=0.0] The height of the polygon.
+   * @param {number} [options.extrudedHeight] The height of the polygon extrusion.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid to be used as a reference.
-   * @param {Number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
-   * @param {Boolean} [options.perPositionHeight=false] Use the height of options.positions for each position instead of using options.height to determine the height.
+   * @param {number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
+   * @param {boolean} [options.perPositionHeight=false] Use the height of options.positions for each position instead of using options.height to determine the height.
    * @param {ArcType} [options.arcType=ArcType.GEODESIC] The type of path the outline must follow. Valid options are {@link LinkType.GEODESIC} and {@link ArcType.RHUMB}.
    * @returns {PolygonOutlineGeometry}
    *

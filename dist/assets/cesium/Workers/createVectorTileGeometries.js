@@ -1,4 +1,4 @@
-define(['./Transforms-40229881', './BoxGeometry-12eeccaf', './Matrix3-315394f6', './Color-a84038cb', './CylinderGeometry-7c5da648', './defaultValue-0a909f67', './EllipsoidGeometry-21c0e3a5', './IndexDatatype-a55ceaa1', './Matrix2-13178034', './createTaskProcessorWorker', './Check-666ab1a0', './Math-2dbd6b93', './combine-ca22a614', './RuntimeError-06c93819', './ComponentDatatype-f7b11d02', './WebGLConstants-a8cc3e8c', './GeometryAttribute-7d6f1732', './GeometryAttributes-f06a2792', './GeometryOffsetAttribute-04332ce7', './VertexFormat-6b480673', './CylinderGeometryLibrary-372c07d8'], (function (Transforms, BoxGeometry, Matrix3, Color, CylinderGeometry, defaultValue, EllipsoidGeometry, IndexDatatype, Matrix2, createTaskProcessorWorker, Check, Math$1, combine, RuntimeError, ComponentDatatype, WebGLConstants, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, CylinderGeometryLibrary) { 'use strict';
+define(['./Transforms-a2a85221', './BoxGeometry-6f3da43d', './Matrix3-41c58dde', './Color-8a565ff2', './CylinderGeometry-ca070b87', './defaultValue-fe22d8c0', './EllipsoidGeometry-cb148ca2', './IndexDatatype-2643aa47', './Matrix2-e1298525', './createTaskProcessorWorker', './Check-6ede7e26', './Math-0a2ac845', './combine-d9581036', './RuntimeError-ef395448', './ComponentDatatype-cf1fa08e', './WebGLConstants-0b1ce7ba', './GeometryAttribute-ff5b4fb1', './GeometryAttributes-ad136444', './GeometryOffsetAttribute-9ad0019c', './VertexFormat-030f11ff', './CylinderGeometryLibrary-7bf291b4'], (function (Transforms, BoxGeometry, Matrix3, Color, CylinderGeometry, defaultValue, EllipsoidGeometry, IndexDatatype, Matrix2, createTaskProcessorWorker, Check, Math$1, combine, RuntimeError, ComponentDatatype, WebGLConstants, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat, CylinderGeometryLibrary) { 'use strict';
 
   /**
    * Describes a renderable batch of geometry.
@@ -6,23 +6,23 @@ define(['./Transforms-40229881', './BoxGeometry-12eeccaf', './Matrix3-315394f6',
    * @alias Vector3DTileBatch
    * @constructor
    *
-   * @param {Object} options An object with the following properties:
-   * @param {Number} options.offset The offset of the batch into the indices buffer.
-   * @param {Number} options.count The number of indices in the batch.
+   * @param {object} options An object with the following properties:
+   * @param {number} options.offset The offset of the batch into the indices buffer.
+   * @param {number} options.count The number of indices in the batch.
    * @param {Color} options.color The color of the geometry in the batch.
-   * @param {Number[]} options.batchIds An array where each element is the batch id of the geometry in the batch.
+   * @param {number[]} options.batchIds An array where each element is the batch id of the geometry in the batch.
    *
    * @private
    */
   function Vector3DTileBatch(options) {
     /**
      * The offset of the batch into the indices buffer.
-     * @type {Number}
+     * @type {number}
      */
     this.offset = options.offset;
     /**
      * The number of indices in the batch.
-     * @type {Number}
+     * @type {number}
      */
     this.count = options.count;
     /**
@@ -32,7 +32,7 @@ define(['./Transforms-40229881', './BoxGeometry-12eeccaf', './Matrix3-315394f6',
     this.color = options.color;
     /**
      * An array where each element is the batch id of the geometry in the batch.
-     * @type {Number[]}
+     * @type {number[]}
      */
     this.batchIds = options.batchIds;
   }

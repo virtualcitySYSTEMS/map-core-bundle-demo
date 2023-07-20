@@ -1,4 +1,4 @@
-define(['./ComponentDatatype-f7b11d02', './defaultValue-0a909f67', './IndexDatatype-a55ceaa1', './RuntimeError-06c93819', './createTaskProcessorWorker', './Check-666ab1a0', './WebGLConstants-a8cc3e8c', './Math-2dbd6b93'], (function (ComponentDatatype, defaultValue, IndexDatatype, RuntimeError, createTaskProcessorWorker, Check, WebGLConstants, Math) { 'use strict';
+define(['./ComponentDatatype-cf1fa08e', './defaultValue-fe22d8c0', './IndexDatatype-2643aa47', './RuntimeError-ef395448', './createTaskProcessorWorker', './Check-6ede7e26', './WebGLConstants-0b1ce7ba', './Math-0a2ac845'], (function (ComponentDatatype, defaultValue, IndexDatatype, RuntimeError, createTaskProcessorWorker, Check, WebGLConstants, Math) { 'use strict';
 
   /* global require */
 
@@ -46,10 +46,18 @@ define(['./ComponentDatatype-f7b11d02', './defaultValue-0a909f67', './IndexDatat
         dracoAttribute,
         attributeData
       );
-    } else {
+    } else if (quantization.quantizationBits <= 16) {
       attributeData = new draco.DracoUInt16Array();
       vertexArray = new Uint16Array(vertexArrayLength);
       dracoDecoder.GetAttributeUInt16ForAllPoints(
+        dracoGeometry,
+        dracoAttribute,
+        attributeData
+      );
+    } else {
+      attributeData = new draco.DracoFloat32Array();
+      vertexArray = new Float32Array(vertexArrayLength);
+      dracoDecoder.GetAttributeFloatForAllPoints(
         dracoGeometry,
         dracoAttribute,
         attributeData

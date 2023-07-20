@@ -1,4 +1,4 @@
-define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-315394f6', './Check-666ab1a0', './ComponentDatatype-f7b11d02', './CoplanarPolygonGeometryLibrary-3272c1b3', './defaultValue-0a909f67', './GeometryAttribute-7d6f1732', './GeometryAttributes-f06a2792', './GeometryInstance-451dc1cd', './GeometryPipeline-ce4339ed', './IndexDatatype-a55ceaa1', './PolygonGeometryLibrary-a8680d96', './Math-2dbd6b93', './Matrix2-13178034', './RuntimeError-06c93819', './combine-ca22a614', './WebGLConstants-a8cc3e8c', './OrientedBoundingBox-04920dc7', './EllipsoidTangentPlane-214683dc', './AxisAlignedBoundingBox-ff186ccc', './IntersectionTests-f6e6bd8a', './Plane-900aa728', './AttributeCompression-b646d393', './EncodedCartesian3-81f70735', './ArcType-ce2e50ab', './EllipsoidRhumbLine-19756602', './PolygonPipeline-844aab0a'], (function (arrayRemoveDuplicates, Transforms, Matrix3, Check, ComponentDatatype, CoplanarPolygonGeometryLibrary, defaultValue, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryPipeline, IndexDatatype, PolygonGeometryLibrary, Math, Matrix2, RuntimeError, combine, WebGLConstants, OrientedBoundingBox, EllipsoidTangentPlane, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, ArcType, EllipsoidRhumbLine, PolygonPipeline) { 'use strict';
+define(['./arrayRemoveDuplicates-d2061e85', './Transforms-a2a85221', './Matrix3-41c58dde', './Check-6ede7e26', './ComponentDatatype-cf1fa08e', './CoplanarPolygonGeometryLibrary-4b4d4096', './defaultValue-fe22d8c0', './GeometryAttribute-ff5b4fb1', './GeometryAttributes-ad136444', './GeometryInstance-34d9e21e', './GeometryPipeline-1f8fbf05', './IndexDatatype-2643aa47', './PolygonGeometryLibrary-076a5d25', './Math-0a2ac845', './Matrix2-e1298525', './RuntimeError-ef395448', './combine-d9581036', './WebGLConstants-0b1ce7ba', './OrientedBoundingBox-159cf1d6', './EllipsoidTangentPlane-6dd1b7af', './AxisAlignedBoundingBox-4140c51f', './IntersectionTests-70d39ba9', './Plane-4c3d403b', './AttributeCompression-f9f6c717', './EncodedCartesian3-57415c8a', './ArcType-2d9abbbc', './EllipsoidRhumbLine-ef872433', './PolygonPipeline-b9f2810a'], (function (arrayRemoveDuplicates, Transforms, Matrix3, Check, ComponentDatatype, CoplanarPolygonGeometryLibrary, defaultValue, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryPipeline, IndexDatatype, PolygonGeometryLibrary, Math, Matrix2, RuntimeError, combine, WebGLConstants, OrientedBoundingBox, EllipsoidTangentPlane, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, ArcType, EllipsoidRhumbLine, PolygonPipeline) { 'use strict';
 
   function createGeometryFromPositions(positions) {
     const length = positions.length;
@@ -39,7 +39,7 @@ define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-
    * @alias CoplanarPolygonOutlineGeometry
    * @constructor
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {PolygonHierarchy} options.polygonHierarchy A polygon hierarchy that can include holes.
    *
    * @see CoplanarPolygonOutlineGeometry.createGeometry
@@ -67,7 +67,7 @@ define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-
 
     /**
      * The number of elements used to pack the object into an array.
-     * @type {Number}
+     * @type {number}
      */
     this.packedLength =
       PolygonGeometryLibrary.PolygonGeometryLibrary.computeHierarchyPackedLength(
@@ -79,7 +79,7 @@ define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-
   /**
    * A description of a coplanar polygon outline from an array of positions.
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Cartesian3[]} options.positions An array of positions that defined the corner points of the polygon.
    * @returns {CoplanarPolygonOutlineGeometry}
    */
@@ -102,10 +102,10 @@ define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-
    * Stores the provided instance into the provided array.
    *
    * @param {CoplanarPolygonOutlineGeometry} value The value to pack.
-   * @param {Number[]} array The array to pack into.
-   * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
+   * @param {number[]} array The array to pack into.
+   * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
    *
-   * @returns {Number[]} The array that was packed into
+   * @returns {number[]} The array that was packed into
    */
   CoplanarPolygonOutlineGeometry.pack = function (value, array, startingIndex) {
     //>>includeStart('debug', pragmas.debug);
@@ -133,8 +133,8 @@ define(['./arrayRemoveDuplicates-c2038105', './Transforms-40229881', './Matrix3-
   /**
    * Retrieves an instance from a packed array.
    *
-   * @param {Number[]} array The packed array.
-   * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
+   * @param {number[]} array The packed array.
+   * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
    * @param {CoplanarPolygonOutlineGeometry} [result] The object into which to store the result.
    * @returns {CoplanarPolygonOutlineGeometry} The modified result parameter or a new CoplanarPolygonOutlineGeometry instance if one was not provided.
    */

@@ -1,4 +1,4 @@
-define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881', './ComponentDatatype-f7b11d02', './Check-666ab1a0', './GeometryAttribute-7d6f1732', './GeometryAttributes-f06a2792', './IndexDatatype-a55ceaa1', './Math-2dbd6b93', './VertexFormat-6b480673', './WallGeometryLibrary-919eed92', './Matrix2-13178034', './RuntimeError-06c93819', './combine-ca22a614', './WebGLConstants-a8cc3e8c', './arrayRemoveDuplicates-c2038105', './PolylinePipeline-32f36d2a', './EllipsoidGeodesic-98c62a56', './EllipsoidRhumbLine-19756602', './IntersectionTests-f6e6bd8a', './Plane-900aa728'], (function (defaultValue, Matrix3, Transforms, ComponentDatatype, Check, GeometryAttribute, GeometryAttributes, IndexDatatype, Math, VertexFormat, WallGeometryLibrary, Matrix2, RuntimeError, combine, WebGLConstants, arrayRemoveDuplicates, PolylinePipeline, EllipsoidGeodesic, EllipsoidRhumbLine, IntersectionTests, Plane) { 'use strict';
+define(['./defaultValue-fe22d8c0', './Matrix3-41c58dde', './Transforms-a2a85221', './ComponentDatatype-cf1fa08e', './Check-6ede7e26', './GeometryAttribute-ff5b4fb1', './GeometryAttributes-ad136444', './IndexDatatype-2643aa47', './Math-0a2ac845', './VertexFormat-030f11ff', './WallGeometryLibrary-1938bf0d', './Matrix2-e1298525', './RuntimeError-ef395448', './combine-d9581036', './WebGLConstants-0b1ce7ba', './arrayRemoveDuplicates-d2061e85', './PolylinePipeline-639192e0', './EllipsoidGeodesic-5b3623dc', './EllipsoidRhumbLine-ef872433', './IntersectionTests-70d39ba9', './Plane-4c3d403b'], (function (defaultValue, Matrix3, Transforms, ComponentDatatype, Check, GeometryAttribute, GeometryAttributes, IndexDatatype, Math, VertexFormat, WallGeometryLibrary, Matrix2, RuntimeError, combine, WebGLConstants, arrayRemoveDuplicates, PolylinePipeline, EllipsoidGeodesic, EllipsoidRhumbLine, IntersectionTests, Plane) { 'use strict';
 
   const scratchCartesian3Position1 = new Matrix3.Cartesian3();
   const scratchCartesian3Position2 = new Matrix3.Cartesian3();
@@ -15,12 +15,12 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881'
    * @alias WallGeometry
    * @constructor
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Cartesian3[]} options.positions An array of Cartesian objects, which are the points of the wall.
-   * @param {Number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
-   * @param {Number[]} [options.maximumHeights] An array parallel to <code>positions</code> that give the maximum height of the
+   * @param {number} [options.granularity=CesiumMath.RADIANS_PER_DEGREE] The distance, in radians, between each latitude and longitude. Determines the number of positions in the buffer.
+   * @param {number[]} [options.maximumHeights] An array parallel to <code>positions</code> that give the maximum height of the
    *        wall at <code>positions</code>. If undefined, the height of each position in used.
-   * @param {Number[]} [options.minimumHeights] An array parallel to <code>positions</code> that give the minimum height of the
+   * @param {number[]} [options.minimumHeights] An array parallel to <code>positions</code> that give the minimum height of the
    *        wall at <code>positions</code>. If undefined, the height at each position is 0.0.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid for coordinate manipulation
    * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
@@ -101,7 +101,7 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881'
 
     /**
      * The number of elements used to pack the object into an array.
-     * @type {Number}
+     * @type {number}
      */
     this.packedLength =
       numComponents + Matrix3.Ellipsoid.packedLength + VertexFormat.VertexFormat.packedLength + 1;
@@ -111,10 +111,10 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881'
    * Stores the provided instance into the provided array.
    *
    * @param {WallGeometry} value The value to pack.
-   * @param {Number[]} array The array to pack into.
-   * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
+   * @param {number[]} array The array to pack into.
+   * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
    *
-   * @returns {Number[]} The array that was packed into
+   * @returns {number[]} The array that was packed into
    */
   WallGeometry.pack = function (value, array, startingIndex) {
     //>>includeStart('debug', pragmas.debug);
@@ -183,8 +183,8 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881'
   /**
    * Retrieves an instance from a packed array.
    *
-   * @param {Number[]} array The packed array.
-   * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
+   * @param {number[]} array The packed array.
+   * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
    * @param {WallGeometry} [result] The object into which to store the result.
    * @returns {WallGeometry} The modified result parameter or a new WallGeometry instance if one was not provided.
    */
@@ -260,11 +260,11 @@ define(['./defaultValue-0a909f67', './Matrix3-315394f6', './Transforms-40229881'
    * A description of a wall, which is similar to a KML line string. A wall is defined by a series of points,
    * which extrude down to the ground. Optionally, they can extrude downwards to a specified height.
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Cartesian3[]} options.positions An array of Cartesian objects, which are the points of the wall.
-   * @param {Number} [options.maximumHeight] A constant that defines the maximum height of the
+   * @param {number} [options.maximumHeight] A constant that defines the maximum height of the
    *        wall at <code>positions</code>. If undefined, the height of each position in used.
-   * @param {Number} [options.minimumHeight] A constant that defines the minimum height of the
+   * @param {number} [options.minimumHeight] A constant that defines the minimum height of the
    *        wall at <code>positions</code>. If undefined, the height at each position is 0.0.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid for coordinate manipulation
    * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.

@@ -82,8 +82,6 @@ async function init() {
         createFeatureInfoSession(vcsApp);
         // set cesium base url
         window.CESIUM_BASE_URL = '../dist/assets/cesium/';
-        // adding helper instance to window
-        window.vcsApp = vcsApp;
     }
 }
 

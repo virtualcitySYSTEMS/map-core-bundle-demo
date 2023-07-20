@@ -1,15 +1,15 @@
-define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms-40229881', './Matrix2-13178034', './defaultValue-0a909f67', './Check-666ab1a0', './TerrainEncoding-833187da', './Math-2dbd6b93', './OrientedBoundingBox-04920dc7', './WebMercatorProjection-13a90d41', './RuntimeError-06c93819', './createTaskProcessorWorker', './combine-ca22a614', './AttributeCompression-b646d393', './ComponentDatatype-f7b11d02', './WebGLConstants-a8cc3e8c', './EllipsoidTangentPlane-214683dc', './IntersectionTests-f6e6bd8a', './Plane-900aa728'], (function (Matrix3, AxisAlignedBoundingBox, Transforms, Matrix2, defaultValue, Check, TerrainEncoding, Math$1, OrientedBoundingBox, WebMercatorProjection, RuntimeError, createTaskProcessorWorker, combine, AttributeCompression, ComponentDatatype, WebGLConstants, EllipsoidTangentPlane, IntersectionTests, Plane) { 'use strict';
+define(['./Matrix3-41c58dde', './AxisAlignedBoundingBox-4140c51f', './Transforms-a2a85221', './Matrix2-e1298525', './defaultValue-fe22d8c0', './Check-6ede7e26', './TerrainEncoding-668d242f', './Math-0a2ac845', './OrientedBoundingBox-159cf1d6', './WebMercatorProjection-13ed1a6e', './RuntimeError-ef395448', './createTaskProcessorWorker', './combine-d9581036', './AttributeCompression-f9f6c717', './ComponentDatatype-cf1fa08e', './WebGLConstants-0b1ce7ba', './EllipsoidTangentPlane-6dd1b7af', './IntersectionTests-70d39ba9', './Plane-4c3d403b'], (function (Matrix3, AxisAlignedBoundingBox, Transforms, Matrix2, defaultValue, Check, TerrainEncoding, Math$1, OrientedBoundingBox, WebMercatorProjection, RuntimeError, createTaskProcessorWorker, combine, AttributeCompression, ComponentDatatype, WebGLConstants, EllipsoidTangentPlane, IntersectionTests, Plane) { 'use strict';
 
   /**
    * The encoding that is used for a heightmap
    *
-   * @enum {Number}
+   * @enum {number}
    */
   const HeightmapEncoding = {
     /**
      * No encoding
      *
-     * @type {Number}
+     * @type {number}
      * @constant
      */
     NONE: 0,
@@ -17,7 +17,7 @@ define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms
     /**
      * LERC encoding
      *
-     * @type {Number}
+     * @type {number}
      * @constant
      *
      * @see {@link https://github.com/Esri/lerc|The LERC specification}
@@ -57,51 +57,51 @@ define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms
   /**
    * Fills an array of vertices from a heightmap image.
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Int8Array|Uint8Array|Int16Array|Uint16Array|Int32Array|Uint32Array|Float32Array|Float64Array} options.heightmap The heightmap to tessellate.
-   * @param {Number} options.width The width of the heightmap, in height samples.
-   * @param {Number} options.height The height of the heightmap, in height samples.
-   * @param {Number} options.skirtHeight The height of skirts to drape at the edges of the heightmap.
+   * @param {number} options.width The width of the heightmap, in height samples.
+   * @param {number} options.height The height of the heightmap, in height samples.
+   * @param {number} options.skirtHeight The height of skirts to drape at the edges of the heightmap.
    * @param {Rectangle} options.nativeRectangle A rectangle in the native coordinates of the heightmap's projection.  For
    *                 a heightmap with a geographic projection, this is degrees.  For the web mercator
    *                 projection, this is meters.
-   * @param {Number} [options.exaggeration=1.0] The scale used to exaggerate the terrain.
-   * @param {Number} [options.exaggerationRelativeHeight=0.0] The height from which terrain is exaggerated.
+   * @param {number} [options.exaggeration=1.0] The scale used to exaggerate the terrain.
+   * @param {number} [options.exaggerationRelativeHeight=0.0] The height from which terrain is exaggerated.
    * @param {Rectangle} [options.rectangle] The rectangle covered by the heightmap, in geodetic coordinates with north, south, east and
    *                 west properties in radians.  Either rectangle or nativeRectangle must be provided.  If both
    *                 are provided, they're assumed to be consistent.
-   * @param {Boolean} [options.isGeographic=true] True if the heightmap uses a {@link GeographicProjection}, or false if it uses
+   * @param {boolean} [options.isGeographic=true] True if the heightmap uses a {@link GeographicProjection}, or false if it uses
    *                  a {@link WebMercatorProjection}.
    * @param {Cartesian3} [options.relativeToCenter=Cartesian3.ZERO] The positions will be computed as <code>Cartesian3.subtract(worldPosition, relativeToCenter)</code>.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid to which the heightmap applies.
-   * @param {Object} [options.structure] An object describing the structure of the height data.
-   * @param {Number} [options.structure.heightScale=1.0] The factor by which to multiply height samples in order to obtain
+   * @param {object} [options.structure] An object describing the structure of the height data.
+   * @param {number} [options.structure.heightScale=1.0] The factor by which to multiply height samples in order to obtain
    *                 the height above the heightOffset, in meters.  The heightOffset is added to the resulting
    *                 height after multiplying by the scale.
-   * @param {Number} [options.structure.heightOffset=0.0] The offset to add to the scaled height to obtain the final
+   * @param {number} [options.structure.heightOffset=0.0] The offset to add to the scaled height to obtain the final
    *                 height in meters.  The offset is added after the height sample is multiplied by the
    *                 heightScale.
-   * @param {Number} [options.structure.elementsPerHeight=1] The number of elements in the buffer that make up a single height
+   * @param {number} [options.structure.elementsPerHeight=1] The number of elements in the buffer that make up a single height
    *                 sample.  This is usually 1, indicating that each element is a separate height sample.  If
    *                 it is greater than 1, that number of elements together form the height sample, which is
    *                 computed according to the structure.elementMultiplier and structure.isBigEndian properties.
-   * @param {Number} [options.structure.stride=1] The number of elements to skip to get from the first element of
+   * @param {number} [options.structure.stride=1] The number of elements to skip to get from the first element of
    *                 one height to the first element of the next height.
-   * @param {Number} [options.structure.elementMultiplier=256.0] The multiplier used to compute the height value when the
+   * @param {number} [options.structure.elementMultiplier=256.0] The multiplier used to compute the height value when the
    *                 stride property is greater than 1.  For example, if the stride is 4 and the strideMultiplier
    *                 is 256, the height is computed as follows:
    *                 `height = buffer[index] + buffer[index + 1] * 256 + buffer[index + 2] * 256 * 256 + buffer[index + 3] * 256 * 256 * 256`
    *                 This is assuming that the isBigEndian property is false.  If it is true, the order of the
    *                 elements is reversed.
-   * @param {Number} [options.structure.lowestEncodedHeight] The lowest value that can be stored in the height buffer.  Any heights that are lower
+   * @param {number} [options.structure.lowestEncodedHeight] The lowest value that can be stored in the height buffer.  Any heights that are lower
    *                 than this value after encoding with the `heightScale` and `heightOffset` are clamped to this value.  For example, if the height
    *                 buffer is a `Uint16Array`, this value should be 0 because a `Uint16Array` cannot store negative numbers.  If this parameter is
    *                 not specified, no minimum value is enforced.
-   * @param {Number} [options.structure.highestEncodedHeight] The highest value that can be stored in the height buffer.  Any heights that are higher
+   * @param {number} [options.structure.highestEncodedHeight] The highest value that can be stored in the height buffer.  Any heights that are higher
    *                 than this value after encoding with the `heightScale` and `heightOffset` are clamped to this value.  For example, if the height
    *                 buffer is a `Uint16Array`, this value should be `256 * 256 - 1` or 65535 because a `Uint16Array` cannot store numbers larger
    *                 than 65535.  If this parameter is not specified, no maximum value is enforced.
-   * @param {Boolean} [options.structure.isBigEndian=false] Indicates endianness of the elements in the buffer when the
+   * @param {boolean} [options.structure.isBigEndian=false] Indicates endianness of the elements in the buffer when the
    *                  stride property is greater than 1.  If this property is false, the first element is the
    *                  low-order element.  If it is true, the first element is the high-order element.
    *
@@ -545,11 +545,7 @@ define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms
   };
   var HeightmapTessellator$1 = HeightmapTessellator;
 
-  var LercDecodeExports = {};
-  var LercDecode = {
-    get exports(){ return LercDecodeExports; },
-    set exports(v){ LercDecodeExports = v; },
-  };
+  var LercDecode = {exports: {}};
 
   /* jshint forin: false, bitwise: false */
 
@@ -2394,7 +2390,9 @@ define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms
   	        data.pixels = {};
 
   	        // File header
-  	        if (!Lerc2Helpers.readHeaderInfo(input, data)) ;
+  	        if (!Lerc2Helpers.readHeaderInfo(input, data)) {
+  	          return;
+  	        }
   	        var headerInfo = data.headerInfo;
   	        var fileVersion = headerInfo.fileVersion;
   	        var OutPixelTypeArray = Lerc2Helpers.getDataTypeArray(headerInfo.imageType);
@@ -2655,10 +2653,11 @@ define(['./Matrix3-315394f6', './AxisAlignedBoundingBox-ff186ccc', './Transforms
   	    this.Lerc = Lerc;
   	  }
 
-  	})();
+  	})(); 
   } (LercDecode));
 
-  var Lerc = LercDecodeExports;
+  var LercDecodeExports = LercDecode.exports;
+  var Lerc = /*@__PURE__*/Math$1.getDefaultExportFromCjs(LercDecodeExports);
 
   function createVerticesFromHeightmap(parameters, transferableObjects) {
     // LERC encoded buffers must be decoded, then we can process them like normal

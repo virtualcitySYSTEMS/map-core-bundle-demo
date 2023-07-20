@@ -1,4 +1,4 @@
-define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './Transforms-40229881', './Matrix2-13178034', './Matrix3-315394f6', './Check-666ab1a0', './ComponentDatatype-f7b11d02', './CoplanarPolygonGeometryLibrary-3272c1b3', './defaultValue-0a909f67', './GeometryAttribute-7d6f1732', './GeometryAttributes-f06a2792', './GeometryInstance-451dc1cd', './GeometryPipeline-ce4339ed', './IndexDatatype-a55ceaa1', './Math-2dbd6b93', './PolygonGeometryLibrary-a8680d96', './PolygonPipeline-844aab0a', './VertexFormat-6b480673', './combine-ca22a614', './RuntimeError-06c93819', './WebGLConstants-a8cc3e8c', './OrientedBoundingBox-04920dc7', './EllipsoidTangentPlane-214683dc', './AxisAlignedBoundingBox-ff186ccc', './IntersectionTests-f6e6bd8a', './Plane-900aa728', './AttributeCompression-b646d393', './EncodedCartesian3-81f70735', './ArcType-ce2e50ab', './EllipsoidRhumbLine-19756602'], (function (arrayRemoveDuplicates, BoundingRectangle, Transforms, Matrix2, Matrix3, Check, ComponentDatatype, CoplanarPolygonGeometryLibrary, defaultValue, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryPipeline, IndexDatatype, Math, PolygonGeometryLibrary, PolygonPipeline, VertexFormat, combine, RuntimeError, WebGLConstants, OrientedBoundingBox, EllipsoidTangentPlane, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, ArcType, EllipsoidRhumbLine) { 'use strict';
+define(['./arrayRemoveDuplicates-d2061e85', './BoundingRectangle-c714b156', './Transforms-a2a85221', './Matrix2-e1298525', './Matrix3-41c58dde', './Check-6ede7e26', './ComponentDatatype-cf1fa08e', './CoplanarPolygonGeometryLibrary-4b4d4096', './defaultValue-fe22d8c0', './GeometryAttribute-ff5b4fb1', './GeometryAttributes-ad136444', './GeometryInstance-34d9e21e', './GeometryPipeline-1f8fbf05', './IndexDatatype-2643aa47', './Math-0a2ac845', './PolygonGeometryLibrary-076a5d25', './PolygonPipeline-b9f2810a', './VertexFormat-030f11ff', './combine-d9581036', './RuntimeError-ef395448', './WebGLConstants-0b1ce7ba', './OrientedBoundingBox-159cf1d6', './EllipsoidTangentPlane-6dd1b7af', './AxisAlignedBoundingBox-4140c51f', './IntersectionTests-70d39ba9', './Plane-4c3d403b', './AttributeCompression-f9f6c717', './EncodedCartesian3-57415c8a', './ArcType-2d9abbbc', './EllipsoidRhumbLine-ef872433'], (function (arrayRemoveDuplicates, BoundingRectangle, Transforms, Matrix2, Matrix3, Check, ComponentDatatype, CoplanarPolygonGeometryLibrary, defaultValue, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryPipeline, IndexDatatype, Math, PolygonGeometryLibrary, PolygonPipeline, VertexFormat, combine, RuntimeError, WebGLConstants, OrientedBoundingBox, EllipsoidTangentPlane, AxisAlignedBoundingBox, IntersectionTests, Plane, AttributeCompression, EncodedCartesian3, ArcType, EllipsoidRhumbLine) { 'use strict';
 
   const scratchPosition = new Matrix3.Cartesian3();
   const scratchBR = new BoundingRectangle.BoundingRectangle();
@@ -204,9 +204,9 @@ define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './T
    * @alias CoplanarPolygonGeometry
    * @constructor
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {PolygonHierarchy} options.polygonHierarchy A polygon hierarchy that can include holes.
-   * @param {Number} [options.stRotation=0.0] The rotation of the texture coordinates, in radians. A positive rotation is counter-clockwise.
+   * @param {number} [options.stRotation=0.0] The rotation of the texture coordinates, in radians. A positive rotation is counter-clockwise.
    * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid to be used as a reference.
    * @param {PolygonHierarchy} [options.textureCoordinates] Texture coordinates as a {@link PolygonHierarchy} of {@link Cartesian2} points.
@@ -243,7 +243,7 @@ define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './T
 
     /**
      * The number of elements used to pack the object into an array.
-     * @type {Number}
+     * @type {number}
      */
     this.packedLength =
       PolygonGeometryLibrary.PolygonGeometryLibrary.computeHierarchyPackedLength(
@@ -264,10 +264,10 @@ define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './T
   /**
    * A description of a coplanar polygon from an array of positions.
    *
-   * @param {Object} options Object with the following properties:
+   * @param {object} options Object with the following properties:
    * @param {Cartesian3[]} options.positions An array of positions that defined the corner points of the polygon.
    * @param {VertexFormat} [options.vertexFormat=VertexFormat.DEFAULT] The vertex attributes to be computed.
-   * @param {Number} [options.stRotation=0.0] The rotation of the texture coordinates, in radians. A positive rotation is counter-clockwise.
+   * @param {number} [options.stRotation=0.0] The rotation of the texture coordinates, in radians. A positive rotation is counter-clockwise.
    * @param {Ellipsoid} [options.ellipsoid=Ellipsoid.WGS84] The ellipsoid to be used as a reference.
    * @param {PolygonHierarchy} [options.textureCoordinates] Texture coordinates as a {@link PolygonHierarchy} of {@link Cartesian2} points.
    * @returns {CoplanarPolygonGeometry}
@@ -310,10 +310,10 @@ define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './T
    * Stores the provided instance into the provided array.
    *
    * @param {CoplanarPolygonGeometry} value The value to pack.
-   * @param {Number[]} array The array to pack into.
-   * @param {Number} [startingIndex=0] The index into the array at which to start packing the elements.
+   * @param {number[]} array The array to pack into.
+   * @param {number} [startingIndex=0] The index into the array at which to start packing the elements.
    *
-   * @returns {Number[]} The array that was packed into
+   * @returns {number[]} The array that was packed into
    */
   CoplanarPolygonGeometry.pack = function (value, array, startingIndex) {
     //>>includeStart('debug', pragmas.debug);
@@ -360,8 +360,8 @@ define(['./arrayRemoveDuplicates-c2038105', './BoundingRectangle-be5924f4', './T
   /**
    * Retrieves an instance from a packed array.
    *
-   * @param {Number[]} array The packed array.
-   * @param {Number} [startingIndex=0] The starting index of the element to be unpacked.
+   * @param {number[]} array The packed array.
+   * @param {number} [startingIndex=0] The starting index of the element to be unpacked.
    * @param {CoplanarPolygonGeometry} [result] The object into which to store the result.
    * @returns {CoplanarPolygonGeometry} The modified result parameter or a new CoplanarPolygonGeometry instance if one was not provided.
    */
