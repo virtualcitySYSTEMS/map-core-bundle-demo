@@ -1,7 +1,7 @@
 {
   "name": "core-bundle-demo",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "demo project bundling map-core and integrating it in a demo application",
   "main": "index.js",
   "scripts": {
@@ -18,9 +18,9 @@
     "index.js"
   ],
   "dependencies": {
-    "@vcmap/core": "^5.0.0-rc.34"
+    "@vcmap/core": "^5.0.3"
   },
   "devDependencies": {
-    "vite": "^4.3.9"
+    "vite": "^4.4.9"
   }
 }
